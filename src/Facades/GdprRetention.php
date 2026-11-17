@@ -3,14 +3,18 @@
 namespace JeffersonGoncalves\GdprRetention\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use JeffersonGoncalves\GdprRetention\RetentionManager;
 
 /**
- * @see \JeffersonGoncalves\GdprRetention\GdprRetention
+ * @method static list<array{model: class-string, column: string, retention: string, records: int}> apply(bool $dryRun = false)
+ * @method static int reapply()
+ *
+ * @see RetentionManager
  */
 class GdprRetention extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return 'laravel-gdpr-retention';
+        return RetentionManager::class;
     }
 }
