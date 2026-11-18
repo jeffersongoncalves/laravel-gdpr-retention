@@ -2,19 +2,12 @@
 
 namespace JeffersonGoncalves\GdprRetention\Commands;
 
-use Illuminate\Console\Command;
 use JeffersonGoncalves\GdprRetention\RetentionManager;
+use JeffersonGoncalves\Privacy\Retention\Commands\ReapplyCommand as BaseReapplyCommand;
 
-class ReapplyCommand extends Command
+class ReapplyCommand extends BaseReapplyCommand
 {
     protected $signature = 'gdpr:retention-reapply';
 
-    protected $description = 'Re-anonymize tombstoned personal data that came back, e.g. after restoring a backup';
-
-    public function handle(RetentionManager $retention): int
-    {
-        $this->info($retention->reapply().' column(s) re-anonymized.');
-
-        return self::SUCCESS;
-    }
+    protected string $manager = RetentionManager::class;
 }
